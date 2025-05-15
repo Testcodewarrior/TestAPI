@@ -1,0 +1,21 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Sample Lambda integration with Bedrock
+
+Resources:
+  BedrockLambdaFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.9
+      Policies:
+        - AmazonBedrockFullAccess
+      Environment:
+        Variables:
+          AWS_REGION: us-east-1
+
+Outputs:
+  FunctionName:
+    Description: Name of the Lambda function
+    Value: !Ref BedrockLambdaFunction
